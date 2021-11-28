@@ -1,17 +1,36 @@
 [package]
 name = "nmkill"
 version = "0.1.0"
-edition = "2021"
-authors = ["Yuniel Acosta Pérez <blastkode.com>"]
+authors = ["Yuniel Acosta Pérez <yunielacosta738@gmail.com>"]
 description = "A tool to search for node_modules an clean the projects selected"
 keywords = ["node_modules", "clean", "node", "npm", "package", "manager"]
 categories = ["node", "npm", "package", "manager"]
+repository = "https://github.com/yacosta738/nmkill"
+homepage = "https://github.com/yacosta738/nmkill"
+readme = "README.md"
 license = "MIT"
+exclude = ["assets/*", ".github", "Makefile.toml", "CONTRIBUTING.md", "*.log", "tags"]
+edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rand = "0.8.4"
+
 
 #dev-dependencies
+[dev-dependencies]
+rand = "0.8.4"
 
+[dev-dependencies.cargo-husky]
+version = "1"
+default-features = false
+features = ["user-hooks"]
+
+[[bin]]
+bench = false
+path = "src/main.rs"
+name = "nmkill"
+
+[profile.release]
+lto = true
+codegen-units = 1
