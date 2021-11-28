@@ -1,10 +1,7 @@
 use std::fs;
 use std::io::Write;
 
-use nmkill::{delete_directory, find_directories};
-
-fn create_directories_for_tests() {
-    let base = String::from("directory_tests");
+fn create_directories_for_tests(base: String) {
     let mut directory_tree: Vec<String> = vec![
         base.clone(),
         base.clone() + "/index.html",
@@ -42,36 +39,42 @@ fn create_directories_for_tests() {
     }
 }
 
-fn delete_directory_tree_after_end_the_tests() {
-    let base = String::from("directory_tests");
+fn delete_directory_tree_after_end_the_tests(base: String) {
     let mut dir = std::env::current_dir().unwrap();
     dir.push(base);
     fs::remove_dir_all(dir.as_path()).unwrap();
 }
 
-#[test]
-fn test_find_directories_with_directory_and_criteria() {
-    create_directories_for_tests();
-    let path_directory = "directory_tests";
-    let directories = find_directories(path_directory, "node_modules");
-    println!("{:?}", directories);
-    // check if the number of directories is correct
-    assert_eq!(directories.len(), 12);
-    delete_directory_tree_after_end_the_tests();
-}
+#[cfg(test)]
+mod tests {
+    use nmkill::{delete_directory, find_directories};
 
-#[test]
-fn test_delete_directories_with_criteria() {
-    create_directories_for_tests();
-    let path_directory = "directory_tests";
-    let directories = find_directories(path_directory, "node_modules");
-    println!("{:?}", directories);
-    // check if the number of directories is correct
-    assert_eq!(directories.len(), 12);
-    delete_directory(directories);
-    let directories = find_directories(path_directory, "node_modules");
-    println!("{:?}", directories);
-    // check if the number of directories is correct
-    assert_eq!(directories.len(), 0);
-    delete_directory_tree_after_end_the_tests();
+    use crate::{create_directories_for_tests, delete_directory_tree_after_end_the_tests};
+
+    #[test]
+    fn test_find_directories_with_directory_and_criteria() {
+        create_directories_for_tests(String::from("test_find_directories_with_directory_and_criteria"));
+        let path_directory = "test_find_directories_with_directory_and_criteria";
+        let directories = find_directories(path_directory, "node_modules");
+        println!("{:?}", directories);
+        // check if the number of directories is correct
+        assert_eq!(directories.len(), 12);
+        delete_directory_tree_after_end_the_tests(String::from("test_find_directories_with_directory_and_criteria"));
+    }
+
+    #[test]
+    fn test_delete_directories_with_criteria() {
+        create_directories_for_tests(String::from("test_delete_directories_with_criteria"));
+        let path_directory = "test_delete_directories_with_criteria";
+        let directories = find_directories(path_directory, "node_modules");
+        println!("{:?}", directories);
+        // check if the number of directories is correct
+        assert_eq!(directories.len(), 12);
+        delete_directory(directories);
+        let directories = find_directories(path_directory, "node_modules");
+        println!("{:?}", directories);
+        // check if the number of directories is correct
+        assert_eq!(directories.len(), 0);
+        delete_directory_tree_after_end_the_tests(String::from("test_delete_directories_with_criteria"));
+    }
 }
