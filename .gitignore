@@ -1,1 +1,10 @@
 /target
+
+# IDEs IGNORE
+# Intellij
+.idea
+
+# VS Code
+.vscode
+
+
