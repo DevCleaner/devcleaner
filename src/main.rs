@@ -1,5 +1,5 @@
-use std::env;
 use nmkill::{delete_directory, find_directories};
+use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -8,10 +8,8 @@ fn main() {
 
     println!("Searching for {}", path_directory);
 
-    let mut projects = find_directories( path_directory ,"node_modules");
+    let projects = find_directories(path_directory, "node_modules");
 
     println!("Found {} projects", projects.len());
-    delete_directory(&mut projects)
+    delete_directory(projects)
 }
-
-

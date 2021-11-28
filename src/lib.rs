@@ -11,16 +11,15 @@ pub fn find_directories(path: &str, criteria: &str) -> Vec<PathBuf> {
             if path.ends_with(criteria) {
                 directories.push(path);
             } else {
-                directories.append(&mut find_directories(&path.to_str().unwrap(), criteria));
+                directories.append(&mut find_directories(path.to_str().unwrap(), criteria));
             }
         }
     }
     directories
 }
 
-
-pub fn delete_directory(projects: &mut Vec<PathBuf>) {
-// remove the node_modules of the projects
+pub fn delete_directory(projects: Vec<PathBuf>) {
+    // remove the node_modules of the projects
     for project in projects {
         println!("Removing {}", project.display());
         fs::remove_dir_all(project).unwrap();

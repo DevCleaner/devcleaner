@@ -20,14 +20,13 @@ fn create_directories_for_tests() {
         ));
     }
 
-    for i in 0..directory_tree.len() {
+    for directory in &directory_tree {
         // create a directory tree example for tests
         let mut dir = std::env::current_dir().unwrap();
-        let path = directory_tree[i].clone();
-
+        let path = directory.clone();
+        dir.push(&path);
         // check if path end with extension
         if path.ends_with(".js") || path.ends_with(".html") {
-            dir.push(path);
             fs::create_dir_all(dir.parent().unwrap()).unwrap();
             fs::File::create(dir.as_path()).unwrap();
             // write content to file
@@ -37,7 +36,6 @@ fn create_directories_for_tests() {
                 .unwrap();
             file.write_all(b"test").unwrap();
         } else {
-            dir.push(path);
             fs::create_dir_all(dir.as_path()).unwrap();
         }
         dir.pop();
@@ -62,3 +60,18 @@ fn test_find_directories_with_directory_and_criteria() {
     delete_directory_tree_after_end_the_tests();
 }
 
+#[test]
+fn test_delete_directories_with_criteria() {
+    create_directories_for_tests();
+    let path_directory = "directory_tests";
+    let directories = find_directories(path_directory, "node_modules");
+    println!("{:?}", directories);
+    // check if the number of directories is correct
+    assert_eq!(directories.len(), 12);
+    delete_directory(directories);
+    let directories = find_directories(path_directory, "node_modules");
+    println!("{:?}", directories);
+    // check if the number of directories is correct
+    assert_eq!(directories.len(), 0);
+    delete_directory_tree_after_end_the_tests();
+}

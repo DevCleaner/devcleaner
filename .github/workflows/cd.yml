@@ -194,7 +194,7 @@ jobs:
 #
 #      - name: Execute Homebrew packaging script
 #        run: |
-#          python "./deployment/homebrew/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/homebrew/kdash.rb.template" "./kdash.rb" ${{ env.MACOS_SHA }} ${{ env.LINUX_SHA }}
+#          python "./deployment/homebrew/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/homebrew/nmkill.rb.template" "./kdash.rb" ${{ env.MACOS_SHA }} ${{ env.LINUX_SHA }}
 #          git config --global user.email "d4udts@gmail.com"
 #          git config --global user.name "deepu105"
 #          git clone https://deepu105:${{ secrets.TAP_GITHUB_TOKEN }}@github.com/kdash-rs/homebrew-kdash.git --branch=main brew
@@ -207,7 +207,7 @@ jobs:
 #
 #      - name: Execute chocolatey packaging script
 #        run: |
-#          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/kdash.nuspec.template" "./kdash.nuspec" ${{ env.WINDOWS_SHA }}
+#          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/nmkill.nuspec.template" "./kdash.nuspec" ${{ env.WINDOWS_SHA }}
 #          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/chocolateyinstall.ps1.template" "./chocolateyinstall.ps1" ${{ env.WINDOWS_SHA }}
 #          git config --global user.email "d4udts@gmail.com"
 #          git config --global user.name "deepu105"
@@ -223,7 +223,7 @@ jobs:
 #
 #      - name: Execute Scoop packaging script
 #        run: |
-#          python "./deployment/scoop/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/scoop/kdash.json.template" "./kdash.json" ${{ env.WINDOWS_SHA }}
+#          python "./deployment/scoop/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/scoop/nmkill.json.template" "./kdash.json" ${{ env.WINDOWS_SHA }}
 #          git config --global user.email "d4udts@gmail.com"
 #          git config --global user.name "deepu105"
 #          git clone https://deepu105:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/kdash-rs/scoop-kdash --branch=main scoop

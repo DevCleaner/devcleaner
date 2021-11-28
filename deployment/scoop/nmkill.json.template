@@ -1,0 +1,25 @@
+{
+  "homepage": "https://github.com/yacosta738/nmkill",
+  "description": "A tool to search for node_modules an clean the projects selected",
+  "version": "$version64",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/yacosta738/nmkill/releases/download/v$version64/nmkill-windows.tar.gz",
+      "hash": "$hash_64"
+    }
+  },
+  "bin": "nmkill.exe",
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/yacosta738/nmkill/releases/download/v$version/nmkill-windows.tar.gz",
+        "hash": {
+          "url": "https://github.com/yacosta738/nmkill/releases/download/v$version/nmkill-windows.sha256",
+          "regex": "$sha256"
+        }
+      }
+    }
+  }
+}
