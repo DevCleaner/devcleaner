@@ -1,0 +1,13 @@
+[package]
+name = "nmkill"
+version = "0.1.0"
+edition = "2021"
+authors = ["Yuniel Acosta Pérez <blastkode.com>"]
+description = "A tool to search for node_modules an clean the projects selected"
+keywords = ["node_modules", "clean", "node", "npm", "package", "manager"]
+categories = ["node", "npm", "package", "manager"]
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
