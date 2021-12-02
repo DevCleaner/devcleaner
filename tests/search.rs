@@ -53,19 +53,21 @@ mod tests {
 
     #[test]
     fn test_find_directories_with_directory_and_criteria() {
-        create_directories_for_tests(String::from("test_find_directories_with_directory_and_criteria"));
-        let path_directory = "test_find_directories_with_directory_and_criteria";
+        const FOLDER: &str = "test_find_directories_with_directory_and_criteria";
+        create_directories_for_tests(String::from(FOLDER));
+        let path_directory = FOLDER;
         let directories = find_directories(path_directory, "node_modules");
         println!("{:?}", directories);
         // check if the number of directories is correct
         assert_eq!(directories.len(), 12);
-        delete_directory_tree_after_end_the_tests(String::from("test_find_directories_with_directory_and_criteria"));
+        delete_directory_tree_after_end_the_tests(String::from(FOLDER));
     }
 
     #[test]
     fn test_delete_directories_with_criteria() {
-        create_directories_for_tests(String::from("test_delete_directories_with_criteria"));
-        let path_directory = "test_delete_directories_with_criteria";
+        const FOLDER: &str = "test_delete_directories_with_criteria";
+        create_directories_for_tests(String::from(FOLDER));
+        let path_directory = FOLDER;
         let directories = find_directories(path_directory, "node_modules");
         println!("{:?}", directories);
         // check if the number of directories is correct
@@ -75,6 +77,23 @@ mod tests {
         println!("{:?}", directories);
         // check if the number of directories is correct
         assert_eq!(directories.len(), 0);
-        delete_directory_tree_after_end_the_tests(String::from("test_delete_directories_with_criteria"));
+        delete_directory_tree_after_end_the_tests(String::from(FOLDER));
+    }
+
+    #[test]
+    fn test_delete_directories_with_multiples_criteria() {
+        const FOLDER: &str = "test_delete_directories_with_multiples_criteria";
+        create_directories_for_tests(String::from(FOLDER));
+        let path_directory = FOLDER;
+        let directories = find_directories(path_directory, "node_modules, project1");
+        println!("{:?}", directories);
+        // check if the number of directories is correct
+        assert_eq!(directories.len(), 12);
+        delete_directory(directories);
+        let directories = find_directories(path_directory, "node_modules");
+        println!("{:?}", directories);
+        // check if the number of directories is correct
+        assert_eq!(directories.len(), 0);
+        delete_directory_tree_after_end_the_tests(String::from(FOLDER));
     }
 }
