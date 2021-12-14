@@ -1,0 +1,33 @@
+default: run
+
+ ## Run all tests
+test:  
+	@cargo test
+
+ ## Run all tests with coverage- `cargo install cargo-tarpaulin`
+test-cov:  
+	@cargo tarpaulin
+
+## Builds the app for current os-arch
+build:  
+	@make test && cargo build --release
+
+## Runs the app
+run:  
+	@CARGO_INCREMENTAL=1 cargo fmt && make lint && cargo run
+
+## Run clippy
+lint:  
+	@find . | grep '\.\/src\/.*\.rs$$' | xargs touch && cargo clippy --all-targets --workspace
+
+## Fix lint
+lint-fix:  
+	@cargo fix
+
+## Run format
+fmt:  
+	@cargo fmt
+
+## Analyse for unsafe usage - `cargo install cargo-geiger`
+analyse:  
+	@cargo geiger
