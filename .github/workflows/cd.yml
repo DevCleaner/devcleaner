@@ -204,36 +204,36 @@ jobs:
           git add .
           git diff-index --quiet HEAD || git commit -am "Update formula for NMkill release ${{ env.RELEASE_VERSION }}"
           git push origin main
-#
-#      - name: Execute chocolatey packaging script
-#        run: |
-#          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/nmkill.nuspec.template" "./kdash.nuspec" ${{ env.WINDOWS_SHA }}
-#          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/chocolateyinstall.ps1.template" "./chocolateyinstall.ps1" ${{ env.WINDOWS_SHA }}
-#          git config --global user.email "d4udts@gmail.com"
-#          git config --global user.name "deepu105"
-#          git clone https://deepu105:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/kdash-rs/choco-kdash --branch=main choco
-#          rm choco/kdash.nuspec
-#          rm choco/tools/chocolateyinstall.ps1
-#          cp kdash.nuspec choco/kdash.nuspec
-#          cp chocolateyinstall.ps1 choco/tools/chocolateyinstall.ps1
-#          cd choco
-#          git add .
-#          git diff-index --quiet HEAD || git commit -am "Update package for KDash release ${{ env.RELEASE_VERSION }}"
-#          git push origin main
-#
-#      - name: Execute Scoop packaging script
-#        run: |
-#          python "./deployment/scoop/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/scoop/nmkill.json.template" "./kdash.json" ${{ env.WINDOWS_SHA }}
-#          git config --global user.email "d4udts@gmail.com"
-#          git config --global user.name "deepu105"
-#          git clone https://deepu105:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/kdash-rs/scoop-kdash --branch=main scoop
-#          rm scoop/kdash.json
-#          cp kdash.json scoop/kdash.json
-#          cd scoop
-#          git add .
-#          git diff-index --quiet HEAD || git commit -am "Update package for KDash release ${{ env.RELEASE_VERSION }}"
-#          git push origin main
-#
+
+      - name: Execute chocolatey packaging script
+        run: |
+          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/nmkill.nuspec.template" "./nmkill.nuspec" ${{ env.WINDOWS_SHA }}
+          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/chocolateyinstall.ps1.template" "./chocolateyinstall.ps1" ${{ env.WINDOWS_SHA }}
+          git config --global user.email "yunielacosta738@gmail.com"
+          git config --global user.name "yacosta738"
+          git clone https://yacosta738:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/nmkill/choco-nmkill --branch=main choco
+          rm choco/nmkill.nuspec
+          rm choco/tools/chocolateyinstall.ps1
+          cp nmkill.nuspec choco/nmkill.nuspec
+          cp chocolateyinstall.ps1 choco/tools/chocolateyinstall.ps1
+          cd choco
+          git add .
+          git diff-index --quiet HEAD || git commit -am "Update package for nmkill release ${{ env.RELEASE_VERSION }}"
+          git push origin main
+
+      - name: Execute Scoop packaging script
+        run: |
+          python "./deployment/scoop/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/scoop/nmkill.json.template" "./nmkill.json" ${{ env.WINDOWS_SHA }}
+          git config --global user.email "yunielacosta738@gmail.com"
+          git config --global user.name "yacosta738"
+          git clone https://yacosta738:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/nmkill/scoop-nmkill --branch=main scoop
+          rm scoop/nmkill.json
+          cp nmkill.json scoop/nmkill.json
+          cd scoop
+          git add .
+          git diff-index --quiet HEAD || git commit -am "Update package for nmkill release ${{ env.RELEASE_VERSION }}"
+          git push origin main
+
 #  publish-cargo:
 #    name: Publishing to Cargo
 #    runs-on: ubuntu-latest
@@ -250,7 +250,7 @@ jobs:
 #        with:
 #          command: publish
 #          args: --token ${{ secrets.CARGO_API_KEY }} --allow-dirty
-#
+
 #  publish-docker-image:
 #    name: Publishing Docker image to Docker Hub
 #    runs-on: ubuntu-latest
@@ -262,5 +262,5 @@ jobs:
 #        with:
 #          username: ${{ secrets.DOCKER_USERNAME }}
 #          password: ${{ secrets.DOCKER_PASSWORD }}
-#          repository: deepu105/kdash
+#          repository: yacosta738/nmkill
 #          tag_with_ref: true
