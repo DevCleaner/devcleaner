@@ -176,34 +176,34 @@ jobs:
       - name: Set release assets and version
         shell: bash
         run: |
-          macos_sha="$(cat ./artifacts/kdash-macos.sha256 | awk '{print $1}')"
+          macos_sha="$(cat ./artifacts/nmkill-macos.sha256 | awk '{print $1}')"
           echo "MACOS_SHA=$macos_sha" >> $GITHUB_ENV
-          linux_sha="$(cat ./artifacts/kdash-linux-musl.sha256 | awk '{print $1}')"
+          linux_sha="$(cat ./artifacts/nmkill-linux-musl.sha256 | awk '{print $1}')"
           echo "LINUX_SHA=$linux_sha" >> $GITHUB_ENV          
-          windows_sha="$(cat ./artifacts/kdash-windows.sha256 | awk '{print $1}')"
+          windows_sha="$(cat ./artifacts/nmkill-windows.sha256 | awk '{print $1}')"
           echo "WINDOWS_SHA=$windows_sha" >> $GITHUB_ENV
           release_version="$(cat ./artifacts/release-version)"
           echo "RELEASE_VERSION=$release_version" >> $GITHUB_ENV
 
-#      - name: Validate release environment variables
-#        run: |
-#          echo "Release SHA macos: ${{ env.MACOS_SHA }}"
-#          echo "Release SHA linux: ${{ env.LINUX_SHA }}"
-#          echo "Release SHA windows: ${{ env.WINDOWS_SHA }}"
-#          echo "Release version: ${{ env.RELEASE_VERSION }}"
-#
-#      - name: Execute Homebrew packaging script
-#        run: |
-#          python "./deployment/homebrew/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/homebrew/nmkill.rb.template" "./kdash.rb" ${{ env.MACOS_SHA }} ${{ env.LINUX_SHA }}
-#          git config --global user.email "d4udts@gmail.com"
-#          git config --global user.name "deepu105"
-#          git clone https://deepu105:${{ secrets.TAP_GITHUB_TOKEN }}@github.com/kdash-rs/homebrew-kdash.git --branch=main brew
-#          rm brew/Formula/kdash.rb
-#          cp kdash.rb brew/Formula
-#          cd brew
-#          git add .
-#          git diff-index --quiet HEAD || git commit -am "Update formula for KDash release ${{ env.RELEASE_VERSION }}"
-#          git push origin main
+      - name: Validate release environment variables
+        run: |
+          echo "Release SHA macos: ${{ env.MACOS_SHA }}"
+          echo "Release SHA linux: ${{ env.LINUX_SHA }}"
+          echo "Release SHA windows: ${{ env.WINDOWS_SHA }}"
+          echo "Release version: ${{ env.RELEASE_VERSION }}"
+
+      - name: Execute Homebrew packaging script
+        run: |
+          python "./deployment/homebrew/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/homebrew/nmkill.rb.template" "./nmkill.rb" ${{ env.MACOS_SHA }} ${{ env.LINUX_SHA }}
+          git config --global user.email "yunielacosta738@gmail.com"
+          git config --global user.name "yacosta738"
+          git clone https://yacosta738:${{ secrets.TAP_GITHUB_TOKEN }}@github.com/nmkill/homebrew-nmkill.git --branch=main brew
+          rm brew/Formula/nmkill.rb
+          cp nmkill.rb brew/Formula
+          cd brew
+          git add .
+          git diff-index --quiet HEAD || git commit -am "Update formula for NMkill release ${{ env.RELEASE_VERSION }}"
+          git push origin main
 #
 #      - name: Execute chocolatey packaging script
 #        run: |
