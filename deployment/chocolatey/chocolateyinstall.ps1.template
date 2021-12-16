@@ -1,8 +1,8 @@
 $ErrorActionPreference = 'Stop';
 
-$PackageName = 'nmkill'
+$PackageName = 'devcleaner'
 $toolsDir    = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url64       = 'https://github.com/yacosta738/nmkill/releases/download/v$version/nmkill-windows.tar.gz'
+$url64       = 'https://github.com/DevCleaner/devcleaner/releases/download/v$version/devcleaner-windows.tar.gz'
 $checksum64  = '$hash_64'
 
 $packageArgs = @{

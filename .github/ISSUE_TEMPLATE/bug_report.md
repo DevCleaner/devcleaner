@@ -27,7 +27,7 @@ If applicable, add screenshots to help explain your problem.
  - OS and OS version: [e.g. macOS 10.1 / Fedora 34 / Manjaro / WIndows 10]
  - Terminal name and version [e.g. Tilix, Yakuake, Gnome Terminal, Konsole, iTerm, Windows CMD]
  - Shell name and version [e.g. bash, zsh, fish, powershell]
- - NMKill version [e.g. 0.0.8]
+ - DevCleaner version [e.g. 0.0.8]
 
 **Additional context**
 Add any other context about the problem here.

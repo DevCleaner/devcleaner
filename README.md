@@ -1,4 +1,5 @@
-[![Continuous Deployment](https://github.com/yacosta738/nmkill/actions/workflows/cd.yml/badge.svg)](https://github.com/yacosta738/nmkill/actions/workflows/cd.yml)
-[![Continuous Integration](https://github.com/yacosta738/nmkill/actions/workflows/ci.yml/badge.svg)](https://github.com/yacosta738/nmkill/actions/workflows/ci.yml)
-# nmkill
-A tool to search for node_modules an clean the projects selected
+[![Continuous Deployment](https://github.com/DevCleaner/devcleaner/actions/workflows/cd.yml/badge.svg)](https://github.com/DevCleaner/devcleaner/actions/workflows/cd.yml)
+[![Continuous Integration](https://github.com/DevCleaner/devcleaner/actions/workflows/ci.yml/badge.svg)](https://github.com/DevCleaner/devcleaner/actions/workflows/ci.yml)
+
+# DevCleaner
+A tool to search for node_modules a clean the projects selected

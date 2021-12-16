@@ -2,14 +2,14 @@
 
 # The install script is licensed under the CC-0 1.0 license.
 
-# See https://github.com/yacosta738/nmkill/blob/main/LICENSE for more details.
+# See https://github.com/DevCleaner/devcleaner/blob/main/LICENSE for more details.
 #
 # To run this script execute:
-#   `curl https://raw.githubusercontent.com/yacosta738/nmkill/main/deployment/getLatest.sh | sh`
+#   `curl https://raw.githubusercontent.com/DevCleaner/devcleaner/main/deployment/getLatest.sh | sh`
 
-GITHUB_REPO="nmkill"
-GITHUB_USER="yacosta738"
-EXE_FILENAME="nmkill"
+GITHUB_REPO="devcleaner"
+GITHUB_USER="DevCleaner"
+EXE_FILENAME="devcleaner"
 EXE_DEST_DIR="/usr/local/bin"
 
 bye() {

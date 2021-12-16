@@ -2,7 +2,7 @@ use clap::{App as ClapApp, Arg};
 
 use super::banner::BANNER;
 
-/// nmkill CLI
+/// DevCleaner CLI
 pub struct Cli {
     /// time in ms between two ticks.
     pub path: String,

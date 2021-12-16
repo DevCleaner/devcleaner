@@ -119,9 +119,9 @@ jobs:
         shell: bash
         run: |
           cd target/${{ matrix.triple.target }}/release
-          BINARY_NAME=nmkill.exe
+          BINARY_NAME=devcleaner.exe
           strip $BINARY_NAME
-          RELEASE_NAME=nmkill-${{ matrix.triple.artifact_prefix }}
+          RELEASE_NAME=devcleaner-${{ matrix.triple.artifact_prefix }}
           tar czvf $RELEASE_NAME.tar.gz $BINARY_NAME
           certutil -hashfile $RELEASE_NAME.tar.gz sha256 | grep -E [A-Fa-f0-9]{64} > $RELEASE_NAME.sha256
           echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
@@ -131,9 +131,9 @@ jobs:
         shell: bash
         run: |
           cd target/${{ matrix.triple.target }}/release
-          BINARY_NAME=nmkill
+          BINARY_NAME=devcleaner
           strip $BINARY_NAME
-          RELEASE_NAME=nmkill-${{ matrix.triple.artifact_prefix }}
+          RELEASE_NAME=devcleaner-${{ matrix.triple.artifact_prefix }}
           tar czvf $RELEASE_NAME.tar.gz $BINARY_NAME
           shasum -a 256 $RELEASE_NAME.tar.gz > $RELEASE_NAME.sha256
           echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_ENV
@@ -176,11 +176,11 @@ jobs:
       - name: Set release assets and version
         shell: bash
         run: |
-          macos_sha="$(cat ./artifacts/nmkill-macos.sha256 | awk '{print $1}')"
+          macos_sha="$(cat ./artifacts/devcleaner-macos.sha256 | awk '{print $1}')"
           echo "MACOS_SHA=$macos_sha" >> $GITHUB_ENV
-          linux_sha="$(cat ./artifacts/nmkill-linux-musl.sha256 | awk '{print $1}')"
+          linux_sha="$(cat ./artifacts/devcleaner-linux-musl.sha256 | awk '{print $1}')"
           echo "LINUX_SHA=$linux_sha" >> $GITHUB_ENV          
-          windows_sha="$(cat ./artifacts/nmkill-windows.sha256 | awk '{print $1}')"
+          windows_sha="$(cat ./artifacts/devcleaner-windows.sha256 | awk '{print $1}')"
           echo "WINDOWS_SHA=$windows_sha" >> $GITHUB_ENV
           release_version="$(cat ./artifacts/release-version)"
           echo "RELEASE_VERSION=$release_version" >> $GITHUB_ENV
@@ -194,44 +194,44 @@ jobs:
 
       - name: Execute Homebrew packaging script
         run: |
-          python "./deployment/homebrew/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/homebrew/nmkill.rb.template" "./nmkill.rb" ${{ env.MACOS_SHA }} ${{ env.LINUX_SHA }}
+          python "./deployment/homebrew/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/homebrew/devcleaner.rb.template" "./devcleaner.rb" ${{ env.MACOS_SHA }} ${{ env.LINUX_SHA }}
           git config --global user.email "yunielacosta738@gmail.com"
           git config --global user.name "yacosta738"
-          git clone https://yacosta738:${{ secrets.TAP_GITHUB_TOKEN }}@github.com/nmkill/homebrew-nmkill.git --branch=main brew
-          rm brew/Formula/nmkill.rb
-          cp nmkill.rb brew/Formula
+          git clone https://yacosta738:${{ secrets.TAP_GITHUB_TOKEN }}@github.com/devcleaner/homebrew-devcleaner.git --branch=main brew
+          rm brew/Formula/devcleaner.rb
+          cp devcleaner.rb brew/Formula
           cd brew
           git add .
-          git diff-index --quiet HEAD || git commit -am "Update formula for NMkill release ${{ env.RELEASE_VERSION }}"
+          git diff-index --quiet HEAD || git commit -am "Update formula for devcleaner release ${{ env.RELEASE_VERSION }}"
           git push origin main
 
       - name: Execute chocolatey packaging script
         run: |
-          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/nmkill.nuspec.template" "./nmkill.nuspec" ${{ env.WINDOWS_SHA }}
+          python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/devcleaner.nuspec.template" "./devcleaner.nuspec" ${{ env.WINDOWS_SHA }}
           python "./deployment/chocolatey/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/chocolatey/chocolateyinstall.ps1.template" "./chocolateyinstall.ps1" ${{ env.WINDOWS_SHA }}
           git config --global user.email "yunielacosta738@gmail.com"
           git config --global user.name "yacosta738"
-          git clone https://yacosta738:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/nmkill/choco-nmkill --branch=main choco
-          rm choco/nmkill.nuspec
+          git clone https://yacosta738:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/devcleaner/choco-devcleaner --branch=main choco
+          rm choco/devcleaner.nuspec
           rm choco/tools/chocolateyinstall.ps1
-          cp nmkill.nuspec choco/nmkill.nuspec
+          cp devcleaner.nuspec choco/devcleaner.nuspec
           cp chocolateyinstall.ps1 choco/tools/chocolateyinstall.ps1
           cd choco
           git add .
-          git diff-index --quiet HEAD || git commit -am "Update package for nmkill release ${{ env.RELEASE_VERSION }}"
+          git diff-index --quiet HEAD || git commit -am "Update package for devcleaner release ${{ env.RELEASE_VERSION }}"
           git push origin main
 
       - name: Execute Scoop packaging script
         run: |
-          python "./deployment/scoop/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/scoop/nmkill.json.template" "./nmkill.json" ${{ env.WINDOWS_SHA }}
+          python "./deployment/scoop/packager.py" ${{ env.RELEASE_VERSION }} "./deployment/scoop/devcleaner.json.template" "./devcleaner.json" ${{ env.WINDOWS_SHA }}
           git config --global user.email "yunielacosta738@gmail.com"
           git config --global user.name "yacosta738"
-          git clone https://yacosta738:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/nmkill/scoop-nmkill --branch=main scoop
-          rm scoop/nmkill.json
-          cp nmkill.json scoop/nmkill.json
+          git clone https://yacosta738:${{ secrets.CHOCO_GITHUB_TOKEN }}@github.com/devcleaner/scoop-devcleaner --branch=main scoop
+          rm scoop/devcleaner.json
+          cp devcleaner.json scoop/devcleaner.json
           cd scoop
           git add .
-          git diff-index --quiet HEAD || git commit -am "Update package for nmkill release ${{ env.RELEASE_VERSION }}"
+          git diff-index --quiet HEAD || git commit -am "Update package for devcleaner release ${{ env.RELEASE_VERSION }}"
           git push origin main
 
   publish-cargo:
@@ -262,5 +262,5 @@ jobs:
 #        with:
 #          username: ${{ secrets.DOCKER_USERNAME }}
 #          password: ${{ secrets.DOCKER_PASSWORD }}
-#          repository: yacosta738/nmkill
+#          repository: yacosta738/devcleaner
 #          tag_with_ref: true

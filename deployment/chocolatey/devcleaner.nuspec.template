@@ -19,31 +19,31 @@ This is a nuspec. It mostly adheres to https://docs.nuget.org/create/Nuspec-Refe
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <!-- == PACKAGE SPECIFIC SECTION == -->
-    <id>nmkill</id>
+    <id>devcleaner</id>
     <version>$version</version>
 
     <!-- == SOFTWARE SPECIFIC SECTION == -->
     <!-- This section is about the software itself -->
-    <title>NMKill</title>
+    <title>DevCleaner</title>
     <authors>Yuniel Acosta Pérez</authors>
-    <projectUrl>https://github.com/yacosta738/nmkill</projectUrl>
-    <licenseUrl>https://github.com/yacosta738/nmkill/blob/main/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/DevCleaner/devcleaner</projectUrl>
+    <licenseUrl>https://github.com/DevCleaner/devcleaner/blob/main/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <projectSourceUrl>https://github.com/yacosta738/nmkill</projectSourceUrl>
-    <docsUrl>https://github.com/yacosta738/nmkill/blob/main/README.md</docsUrl>
-    <bugTrackerUrl>https://github.com/yacosta738/nmkill/issues</bugTrackerUrl>
-    <tags>cli cross-platform terminal npm nmkill node node_modules cleaner rust</tags>
+    <projectSourceUrl>https://github.com/DevCleaner/devcleaner</projectSourceUrl>
+    <docsUrl>https://github.com/DevCleaner/devcleaner/blob/main/README.md</docsUrl>
+    <bugTrackerUrl>https://github.com/DevCleaner/devcleaner/issues</bugTrackerUrl>
+    <tags>cli cross-platform terminal npm devcleaner node node_modules cleaner rust</tags>
     <summary>A tool to search for node_modules an clean the projects selected</summary>
     <description>
     A tool to search for node_modules an clean the projects selected
 
     **Usage**
-    To use, run `nmkill` in a terminal.
+    To use, run `devcleaner` in a terminal.
     
-    For more [documentation and usage](https://github.com/yacosta738/nmkill/blob/main/README.md), see the [official repo](https://github.com/yacosta738/nmkill).
+    For more [documentation and usage](https://github.com/DevCleaner/devcleaner/blob/main/README.md), see the [official repo](https://github.com/DevCleaner/devcleaner).
     
     </description>
-    <releaseNotes>https://github.com/yacosta738/nmkill/releases/tag/v$version/</releaseNotes>
+    <releaseNotes>https://github.com/DevCleaner/devcleaner/releases/tag/v$version/</releaseNotes>
   </metadata>
   <files>
     <!-- this section controls what actually gets packaged into the Chocolatey package -->

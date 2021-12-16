@@ -63,7 +63,7 @@ impl Default for App {
     fn default() -> Self {
         App {
             navigation_stack: vec![DEFAULT_ROUTE],
-            title: " NMKill - A dev tool for cleaning disk usage ",
+            title: " DevCleaner - A dev tool for cleaning disk usage ",
             should_quit: false,
             main_tabs: TabsState::new(vec![TabRoute {
                 title: format!(
