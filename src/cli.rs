@@ -1,4 +1,5 @@
 use clap::{App as ClapApp, Arg};
+use std::env;
 
 use super::banner::BANNER;
 
@@ -15,7 +16,7 @@ pub struct Cli {
 impl Cli {
     pub fn new() -> Cli {
         Cli {
-            path: "".to_string(),
+            path: env::current_dir().unwrap().to_str().unwrap().to_string(),
             criteria: "node_modules".into(),
             enhanced_graphics: true,
         }
@@ -33,7 +34,6 @@ impl Cli {
                 Arg::with_name("path")
                     .short("p")
                     .long("path")
-                    .required(true)
                     .help("Set the path to scan for the criteria.")
                     .takes_value(true),
             )

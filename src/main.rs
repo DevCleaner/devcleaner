@@ -55,7 +55,7 @@ async fn main() -> Result<()> {
     Ok(())
 }
 
-async fn start_ui(_cli: Cli, app: &Arc<Mutex<App>>) -> Result<()> {
+async fn start_ui(cli: Cli, app: &Arc<Mutex<App>>) -> Result<()> {
     // Terminal initialization
     let mut stdout = stdout();
     // not capturing mouse to make text select/copy possible
@@ -89,7 +89,7 @@ async fn start_ui(_cli: Cli, app: &Arc<Mutex<App>>) -> Result<()> {
             }
         };
         // draw the UI layout
-        terminal.draw(|f| ui::draw(f, &mut app))?;
+        terminal.draw(|f| ui::draw(f, &mut app, &cli))?;
 
         // handle key events
         match events.next()? {

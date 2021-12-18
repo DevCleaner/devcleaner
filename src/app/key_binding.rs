@@ -50,15 +50,13 @@ generate_keybindings! {
   jump_to_deployments,
   jump_to_jobs,
   jump_to_daemonsets,
-  jump_to_more_resources,
-  cycle_group_by
+  jump_to_more_resources
 }
 
 #[derive(PartialEq, Eq, Clone, Copy, Hash, Debug)]
 pub enum HContext {
     General,
     Overview,
-    Utilization,
 }
 
 impl fmt::Display for HContext {
@@ -273,12 +271,6 @@ pub const DEFAULT_KEYBINDING: KeyBindings = KeyBindings {
         alt: None,
         desc: "Select more resources",
         context: HContext::Overview,
-    },
-    cycle_group_by: KeyBinding {
-        key: Key::Char('g'),
-        alt: None,
-        desc: "Cycle through grouping",
-        context: HContext::Utilization,
     },
 };
 
