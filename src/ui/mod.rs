@@ -1,26 +1,28 @@
-mod control_panel;
-mod help;
-mod overview;
-mod utils;
-
 use tui::{
     backend::Backend,
+    Frame,
     layout::{Constraint, Rect},
     text::Text,
     widgets::{Block, Borders, Paragraph, Wrap},
-    Frame,
 };
+
+use crate::app::{App, RouteId};
+use crate::Cli;
 
 use self::{
     help::draw_help,
     overview::draw_overview,
     utils::{style_failure, style_main_background, style_primary, vertical_chunks},
 };
-use crate::app::{App, RouteId};
+
+mod control_panel;
+mod help;
+mod overview;
+mod utils;
 
 static HIGHLIGHT: &str = "=> ";
 
-pub fn draw<B: Backend>(f: &mut Frame<B>, app: &mut App) {
+pub fn draw<B: Backend>(f: &mut Frame<B>, app: &mut App, cli: &Cli) {
     let block = Block::default().style(style_main_background(app.light_theme));
     f.render_widget(block, f.size());
 
@@ -45,7 +47,7 @@ pub fn draw<B: Backend>(f: &mut Frame<B>, app: &mut App) {
             draw_help(f, app, last_chunk);
         }
         _ => {
-            draw_overview(f, app, last_chunk);
+            draw_overview(f, app, cli, last_chunk);
         }
     }
 }
