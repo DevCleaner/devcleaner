@@ -45,6 +45,5 @@ pub fn draw_help<B: Backend>(f: &mut Frame<B>, app: &mut App, area: Rect) {
         .highlight_style(style_highlight())
         .highlight_symbol(HIGHLIGHT)
         .widths(&[Constraint::Max(110)]);
-    println!("{:?}", app.help_docs.state);
     f.render_stateful_widget(help_menu, chunks[0], &mut app.help_docs.state);
 }
