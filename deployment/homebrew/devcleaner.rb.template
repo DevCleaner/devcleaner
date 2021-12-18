@@ -1,7 +1,7 @@
 
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
-class DevCleaner < Formula
+class Devcleaner < Formula
   desc "A tool to search for node_modules an clean the projects selected"
   homepage "https://github.com/DevCleaner/devcleaner"
   if OS.mac?
