@@ -101,7 +101,7 @@ fn draw_general_info_block<B: Backend>(f: &mut Frame<B>, app: &mut App, cli: &Cl
 fn draw_header_text<B: Backend>(f: &mut Frame<B>, app: &mut App, area: Rect) {
     let text = match app.get_current_route().id {
         RouteId::Home => vec![Spans::from(
-            "<up|down>: scroll context | <enter>: select context | <?> more help",
+            "<up|down>: move | <enter>: select and delete | <?> more help",
         )],
         _ => vec![Spans::from("<?> more help")],
     };
