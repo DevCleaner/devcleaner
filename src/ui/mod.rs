@@ -1,9 +1,9 @@
 use tui::{
     backend::Backend,
-    Frame,
     layout::{Constraint, Rect},
     text::Text,
     widgets::{Block, Borders, Paragraph, Wrap},
+    Frame,
 };
 
 use crate::app::{App, RouteId};

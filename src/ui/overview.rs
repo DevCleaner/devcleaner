@@ -1,18 +1,18 @@
 use human_bytes::human_bytes;
+use tui::layout::Alignment;
+use tui::widgets::Wrap;
 use tui::{
     backend::Backend,
-    Frame,
     layout::{Constraint, Rect},
     text::{Span, Spans, Text},
     widgets::{Block, Borders, Paragraph},
+    Frame,
 };
-use tui::layout::Alignment;
-use tui::widgets::Wrap;
 
-use crate::{app::App, banner::BANNER, Cli};
 use crate::app::RouteId;
 use crate::ui::control_panel::draw_control_panel_block;
 use crate::ui::utils::{layout_block, style_help, title_style_logo};
+use crate::{app::App, banner::BANNER, Cli};
 
 use super::utils::{
     horizontal_chunks, style_default, style_logo, style_primary, vertical_chunks,

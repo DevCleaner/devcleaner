@@ -1,5 +1,5 @@
-use std::env;
 use clap::{App as ClapApp, Arg};
+use std::env;
 
 use super::banner::BANNER;
 

@@ -271,7 +271,7 @@ pub const DEFAULT_KEYBINDING: KeyBindings = KeyBindings {
         alt: None,
         desc: "Select more resources",
         context: HContext::Overview,
-    }
+    },
 };
 
 pub fn get_help_docs() -> Vec<Vec<String>> {
